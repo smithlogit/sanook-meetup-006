@@ -14,7 +14,7 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
-    working_directory: ~/repo/ci-final
+    working_directory: ~/repo/ci-start
 
     steps:
       - checkout:
@@ -42,7 +42,7 @@ jobs:
       - persist_to_workspace:
           # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is 
           # taken to be the root directory of the workspace.
-          root: ~/repo/ci-final
+          root: ~/repo/ci-start
           # Must be relative path from root
           paths:
             - build
@@ -51,12 +51,12 @@ jobs:
     docker:
       - image: buildpack-deps:trusty
     
-    working_directory: ~/repo/ci-final/build
+    working_directory: ~/repo/ci-start/build
 
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
-          at: ~/repo/ci-final
+          at: ~/repo/ci-start
       
       - run:
           name: git init
